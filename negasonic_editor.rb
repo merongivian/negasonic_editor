@@ -4,9 +4,13 @@ require 'roda/opal_assets'
 
 class NegasonicEditor < Roda
   plugin :render
+  plugin :public
+
   assets = Roda::OpalAssets.new
 
   route do |r|
+    r.public
+
     assets.route r
 
     r.root do
