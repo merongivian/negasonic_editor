@@ -3,11 +3,40 @@ require 'opal-parser'
 require 'opal-jquery'
 require 'negasonic'
 
-%x{
-  StartAudioContext(Tone.context).then(function(){
-    Tone.Transport.start("+0.1")
-  })
-}
+DEFAULT_TRY_CODE = <<-RUBY
+instrument(:bass, synth: :fm, volume: 9) do
+  effects do
+    #vibrato
+    #distortion
+    #feedback_delay
+    jc_reverb
+  end
+end
+
+pattern(instrument: :bass, interval: '1n', type: :down_up, notes: ["C2", "D2", "E2", "A2"])
+
+instrument(:lead, synth: :am, volume: 1) do
+  effects do
+    vibrato frequency: 5, depth: 0.1
+    #distortion
+    feedback_delay delay_time: 0.25, feedback: 0.5
+    jc_reverb room_size: 0.5
+  end
+end
+
+pattern(instrument: :lead, interval: '8n', type: :random_walk, notes: ["C5", "D6", "E5", "A6"])
+
+instrument(:drums, synth: :membrane) do
+  effects do
+    #vibrato
+    distortion value: 0.4
+    #feedback_delay
+    #jc_reverb
+  end
+end
+
+pattern(instrument: :drums, interval: '12n', type: :up_down, notes: ["C2", "D4", "E1", "D1"])
+RUBY
 
 class TryNegasonic
   class Editor
@@ -44,6 +73,8 @@ class TryNegasonic
 
     if hash =~ /^[#?]code:/
       @editor.value = hash[6..-1]
+		else
+			@editor.value = DEFAULT_TRY_CODE.strip
     end
   end
 
@@ -60,7 +91,9 @@ class TryNegasonic
 
     %x{
       if (Tone.Transport.state == 'stopped') {
-        Tone.Transport.start("+0.1")
+        StartAudioContext(Tone.context).then(function(){
+          Tone.Transport.start("+0.1")
+        })
       };
     }
   end
@@ -70,7 +103,7 @@ class TryNegasonic
     @flush = []
     @output.value = ''
 
-    @link[:href] = "?code:#{`encodeURIComponent(#{@editor.value})`}"
+    set_link_code
 
     begin
       code = Opal.compile(@editor.value, :source_map_enabled => false)
@@ -78,6 +111,10 @@ class TryNegasonic
     rescue => err
       log_error err
     end
+  end
+
+  def set_link_code
+    @link[:href] = "?code:#{`encodeURIComponent(#{@editor.value})`}"
   end
 
   def eval_code(js_code)
@@ -98,5 +135,5 @@ Document.ready? do
   $stdout.write_proc = $stderr.write_proc = proc do |str|
     TryNegasonic.instance.print_to_output(str)
   end
-  TryNegasonic.instance.run_code
+  TryNegasonic.instance.set_link_code
 end
