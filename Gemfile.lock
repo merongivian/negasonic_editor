@@ -1,0 +1,71 @@
+GIT
+  remote: https://www.github.com/merongivian/tone.rb
+  revision: 6115d2e89d6d00e67b2d0fd7e942af4703b46e93
+  specs:
+    tone.rb (0.1.0)
+      opal (>= 0.10.2)
+
+GIT
+  remote: https://www.github.com/opal/opal-jquery
+  revision: f47a9b42da366cea270f743b05acf529f3077d35
+  specs:
+    opal-jquery (0.4.2)
+      opal (>= 0.10.0, < 0.12.0)
+
+PATH
+  remote: /Users/jose/code/projects/ruby/negasonic
+  specs:
+    negasonic (0.1.0)
+      tone.rb
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    concurrent-ruby (1.0.5)
+    erubis (2.7.0)
+    execjs (2.7.0)
+    hike (1.2.3)
+    opal (0.10.5)
+      hike (~> 1.2)
+      sourcemap (~> 0.1.0)
+      sprockets (~> 3.1)
+      tilt (>= 1.4)
+    opal-sprockets (0.4.1.0.10.4.3.1.0)
+      opal (~> 0.10.4)
+      sprockets (~> 3.1)
+      tilt (>= 1.4)
+    rack (1.6.10)
+    roda (2.29.0)
+      rack
+    roda-opal_assets (0.3.1)
+      opal (~> 0.7, < 0.11.0)
+      rack (~> 1.0)
+      roda
+      sprockets (~> 3.6.0)
+      uglifier (~> 3.0)
+    sourcemap (0.1.1)
+    sprockets (3.6.3)
+      concurrent-ruby (~> 1.0)
+      rack (> 1, < 3)
+    tilt (2.0.8)
+    uglifier (3.2.0)
+      execjs (>= 0.3.0, < 3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  erubis (~> 2.7)
+  negasonic!
+  opal (~> 0.10.5)
+  opal-jquery!
+  opal-sprockets
+  roda (~> 2.23)
+  roda-opal_assets
+  tone.rb!
+
+RUBY VERSION
+   ruby 2.5.1p57
+
+BUNDLED WITH
+   1.16.2
