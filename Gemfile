@@ -11,4 +11,4 @@ gem 'roda-opal_assets'
 gem 'opal-sprockets'
 gem 'opal-jquery', git: github.('opal/opal-jquery')
 gem 'tone.rb', git: github.('merongivian/tone.rb')
-gem 'negasonic', path: '/Users/jose/code/projects/ruby/negasonic'
+gem 'negasonic', git: github.('merongivian/negasonic')
