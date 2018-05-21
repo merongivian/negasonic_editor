@@ -36,6 +36,7 @@ GEM
       sprockets (~> 3.1)
       tilt (>= 1.4)
     rack (1.6.10)
+    rake (12.3.0)
     roda (2.29.0)
       rack
     roda-opal_assets (0.3.1)
@@ -61,6 +62,7 @@ DEPENDENCIES
   opal (~> 0.10.5)
   opal-jquery!
   opal-sprockets
+  rake
   roda (~> 2.23)
   roda-opal_assets
   tone.rb!
