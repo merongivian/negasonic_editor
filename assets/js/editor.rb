@@ -92,7 +92,8 @@ class TryNegasonic
     %x{
       if (Tone.Transport.state == 'stopped') {
         StartAudioContext(Tone.context).then(function(){
-          Tone.Transport.start("+0.1")
+          Tone.Master.volume.value = -20;
+          Tone.Transport.start("+0.1");
         })
       };
     }
