@@ -1,5 +1,6 @@
 require 'bundler/setup'
 require 'opal'
+require 'opal-jquery'
 require 'tone'
 require 'negasonic'
 require 'roda/opal_assets'
