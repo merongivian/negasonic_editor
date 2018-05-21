@@ -38,6 +38,7 @@ class TryNegasonic
 
     @link = Element.find('#link_code')
     Element.find('#run_code').on(:click) { run_code }
+    Element.find('#stop').on(:click) { stop_negasonic }
 
     hash = `decodeURIComponent(location.hash || location.search)`
 
@@ -46,8 +47,26 @@ class TryNegasonic
     end
   end
 
+  def stop_negasonic
+    %x{
+      if (Tone.Transport.state == 'started') {
+        Tone.Transport.stop("+0.1")
+      };
+    }
+  end
+
+  def reset_negasonic
+    Negasonic::LoopedEvent.dispose_all
+
+    %x{
+      if (Tone.Transport.state == 'stopped') {
+        Tone.Transport.start("+0.1")
+      };
+    }
+  end
+
   def run_code
-    replay
+    reset_negasonic
     @flush = []
     @output.value = ''
 
@@ -59,11 +78,6 @@ class TryNegasonic
     rescue => err
       log_error err
     end
-  end
-
-  def replay
-    Negasonic::LoopedEvent.dispose_all
-    #Tone::Transport.start("+0.1")
   end
 
   def eval_code(js_code)
