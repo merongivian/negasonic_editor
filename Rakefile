@@ -10,6 +10,6 @@ assets = Roda::OpalAssets.new(env: :production)
 
 desc 'Precompile assets for production'
 task 'assets:precompile' do
-  assets << %w(codemirror.js jquery.js ruby.js start_audio_context.js editor.js)
+  assets << 'codemirror.js' << 'jquery.js' << 'ruby.js' << 'start_audio_context.js' << 'editor.js'
   assets.build
 end
