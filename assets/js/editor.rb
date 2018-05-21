@@ -9,7 +9,7 @@ require 'negasonic'
   })
 }
 
-class TryOpal
+class TryNegasonic
   class Editor
     def initialize(dom_id, options)
       @native = `CodeMirror(document.getElementById(dom_id), #{options.to_n})`
@@ -31,6 +31,7 @@ class TryOpal
   def initialize
     @flush = []
 
+    @output = Editor.new :output, lineNumbers: false, mode: 'text', readOnly: true
     @editor = Editor.new :editor, lineNumbers: true, mode: 'ruby', tabMode: 'shift', theme: 'tomorrow-night-eighties', extraKeys: {
       'Cmd-Enter' => -> { run_code }
     }
@@ -48,6 +49,7 @@ class TryOpal
   def run_code
     replay
     @flush = []
+    @output.value = ''
 
     @link[:href] = "?code:#{`encodeURIComponent(#{@editor.value})`}"
 
@@ -60,11 +62,7 @@ class TryOpal
   end
 
   def replay
-    #universe.events.dispose
     Negasonic::LoopedEvent.dispose_all
-    #after(0.5) do
-      #NegaSonic.dispose_synths_effects
-    #end
     #Tone::Transport.start("+0.1")
   end
 
@@ -75,8 +73,16 @@ class TryOpal
   def log_error(err)
     puts "#{err}\n#{`err.stack`}"
   end
+
+  def print_to_output(str)
+    @flush << str
+    @output.value = @flush.join('')
+  end
 end
 
 Document.ready? do
-  TryOpal.instance.run_code
+  $stdout.write_proc = $stderr.write_proc = proc do |str|
+    TryNegasonic.instance.print_to_output(str)
+  end
+  TryNegasonic.instance.run_code
 end

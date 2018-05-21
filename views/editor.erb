@@ -1,3 +1,4 @@
+<%= stylesheet 'app.css' %>
 <%= stylesheet 'codemirror.css' %>
 <%= stylesheet 'codemirror-solarized.css' %>
 <%= js 'jquery.js' %>
@@ -7,16 +8,8 @@
 <%= js 'editor.js' %>
 
 <div class="row" id="wrapper">
-  <div id="editor_wrapper" class="col-md-6">
-    <a href="#" id="run_code" class="btn btn-primary">Run (Cmd+Enter)</a>
-    <a href="#" id="link_code" class="btn">Link</a>
-    <p></p>
-    <div id="editor" class="well" style="padding:0"></div>
-  </div>
-  <div class="col-md-6">
-    <a href="#" class="btn disabled">Compiled Javascript</a>
-    <p></p>
-    <div id="viewer" class="well" style="padding:0">
-    </div>
+  <div id="editor" style="padding:0"></div>
+
+  <div id="output" style="padding:0">
   </div>
 </div>

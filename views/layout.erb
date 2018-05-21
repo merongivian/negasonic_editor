@@ -8,6 +8,59 @@
 
   </head>
   <body>
+    <nav class="navbar is-transparent">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          Negasonic Editor
+        </a>
+        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div id="navbarExampleTransparentExample" class="navbar-menu">
+        <div class="navbar-item">
+          <p class="control">
+            <div class="navbar-start">
+              <a class="bd-tw-button button" href="https://github.com/merongivian/negasonic">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Fork</span>
+              </a>
+            </div>
+          </p>
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="field is-grouped">
+              <p class="control">
+                <a class="button is-success" href='#' id="run_code">
+                  <span class="icon">
+                    <i class="fas fa-play-circle"></i>
+                  </span>
+                  <span>
+                    Play (Cmd+Enter)
+                  </span>
+                </a>
+              </p>
+              <p class="control">
+                <a class="button is-danger" href="https://github.com/jgthms/bulma/releases/download/0.7.1/bulma-0.7.1.zip">
+                  <span class="icon">
+                    <i class="fas fa-stop-circle"></i>
+                  </span>
+                  <span>Stop</span>
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
     <%= yield %>
   </body>
 </html>
