@@ -4,38 +4,33 @@ require 'opal-jquery'
 require 'negasonic'
 
 DEFAULT_TRY_CODE = <<-RUBY
-instrument(:bass, synth: :fm, volume: 9) do
-  effects do
-    #vibrato
-    #distortion
-    #feedback_delay
-    jc_reverb
-  end
-end
-
-pattern(instrument: :bass, interval: '1n', type: :down_up, notes: ["C2", "D2", "E2", "A2"])
-
-instrument(:lead, synth: :am, volume: 1) do
-  effects do
-    vibrato frequency: 5, depth: 0.1
-    #distortion
-    feedback_delay delay_time: 0.25, feedback: 0.5
-    jc_reverb room_size: 0.5
-  end
-end
-
-pattern(instrument: :lead, interval: '8n', type: :random_walk, notes: ["C5", "D6", "E5", "A6"])
-
 instrument(:drums, synth: :membrane) do
   effects do
-    #vibrato
-    distortion value: 0.4
-    #feedback_delay
-    #jc_reverb
+    bit_crusher bits: 3
+    distortion value: 0.8
   end
 end
 
-pattern(instrument: :drums, interval: '12n', type: :up_down, notes: ["C2", "D4", "E1", "D1"])
+pattern(instrument: :drums, interval: '4n', type: :up_down, notes: ["E1", "C3"])
+pattern(instrument: :drums, interval: '2t', type: :up_down, notes: ["F2"])
+
+instrument(:mid, synth: :am) do
+  effects do
+    vibrato frequency: 5
+    feedback_delay
+  end
+end
+
+pattern(instrument: :mid, interval: '1n', type: :random_walk, notes: ["E5", 'C4', 'F5'])
+
+instrument(:high, synth: :poly, volume: -11) do
+  effects do
+    feedback_delay delay_time: 0.5
+    freeverb
+  end
+end
+
+pattern(instrument: :high, interval: '8n', type: :down_up, notes: ["E6", 'G6', 'F6', 'A6'])
 RUBY
 
 class TryNegasonic
