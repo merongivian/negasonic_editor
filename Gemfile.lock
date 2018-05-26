@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://www.github.com/merongivian/tone.rb
-  revision: 2514303225ca276127387f515b9b266a90a41ccf
+  revision: d14eecd6653723e0c7bc2693951a94ab3a5fdab4
   specs:
     tone.rb (0.1.0)
       opal (>= 0.10.2)
