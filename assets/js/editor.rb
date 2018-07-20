@@ -62,7 +62,7 @@ class TryNegasonic
 
     @link = Element.find('#link_code')
     Element.find('#run_code').on(:click) { run_code }
-    Element.find('#stop').on(:click) { stop_negasonic }
+    Element.find('#stop').on(:click) { Negasonic::Time.stop }
 
     hash = `decodeURIComponent(location.hash || location.search)`
 
@@ -73,37 +73,44 @@ class TryNegasonic
     end
   end
 
-  def stop_negasonic
-    %x{
-      if (Tone.Transport.state == 'started') {
-        Tone.Transport.stop("+0.1")
-      };
-    }
-  end
-
-  def reset_negasonic
-    Negasonic::LoopedEvent.dispose_all
-
-    %x{
-      if (Tone.Transport.state == 'stopped') {
+  def start_negasonic
+    if Tone::Transport.stopped?
+      %x{
         StartAudioContext(Tone.context).then(function(){
           Tone.Master.volume.value = -20;
-          Tone.Transport.start("+0.1");
+          #{Tone::Transport.start}
         })
-      };
-    }
+      }
+
+      Negasonic::Time.set_next_cycle_number_acummulator
+    end
   end
 
   def run_code
-    reset_negasonic
+    start_negasonic
+
     @flush = []
     @output.value = ''
 
     set_link_code
 
     begin
+      Negasonic::Instrument.set_all_to_not_used
+
+      Negasonic.default_instrument.store_current_cycles
+      Negasonic.default_instrument.reload
+
       code = Opal.compile(@editor.value, :source_map_enabled => false)
       eval_code code
+
+      Negasonic::Time.schedule_next_cycle do
+        Negasonic.default_instrument.dispose_stored_cycles
+        Negasonic.default_instrument.start_current_cycles
+
+        Negasonic::Instrument.all_not_used.each(&:kill_current_cycles)
+      end
+
+      Negasonic::Time.just_started = false
     rescue => err
       log_error err
     end

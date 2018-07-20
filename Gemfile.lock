@@ -1,13 +1,13 @@
 GIT
   remote: https://www.github.com/merongivian/negasonic
-  revision: 23f195323354c07cb667911e273e0083a7294da7
+  revision: 88f8c0950ca8f82d003059692b694fbff99d030e
   specs:
     negasonic (0.1.0)
       tone.rb
 
 GIT
   remote: https://www.github.com/merongivian/tone.rb
-  revision: d14eecd6653723e0c7bc2693951a94ab3a5fdab4
+  revision: ad0ce35a1ca6615a59b4fe3bd07254283c95dd22
   specs:
     tone.rb (0.1.0)
       opal (>= 0.10.2)
