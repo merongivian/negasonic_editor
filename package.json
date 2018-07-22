@@ -1,0 +1,13 @@
+{
+  "name": "negasonic_editor",
+  "version": "0.0.1",
+  "description": "live coding environment for negasonic",
+  "main": "index.js",
+  "repository": "https://github.com/merongivian/negasonic_editor.git",
+  "author": "Jose Anasco <joseanasco1@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "browserify": "^16.2.2",
+    "hydra-synth": "^1.0.12"
+  }
+}
