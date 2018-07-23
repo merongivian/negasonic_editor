@@ -6,3 +6,16 @@
   position: absolute;
   top: 0;
 }
+
+.CodeMirror-code pre {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  border-right: 0 !important;
+}
+
+.CodeMirror .CodeMirror-cursor {
+  border-left: 2px solid white !important;
+}
+
+#editor .CodeMirror {
+  height: 100% !important;
+}

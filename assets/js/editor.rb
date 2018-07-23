@@ -51,18 +51,21 @@ class TryNegasonic
   def self.instance
     @instance ||= self.new
   end
-
-  def initialize
+def initialize
     @flush = []
 
-    @output = Editor.new :output, lineNumbers: false, mode: 'text', readOnly: true
-    @editor = Editor.new :editor, lineNumbers: true, mode: 'ruby', tabMode: 'shift', theme: 'tomorrow-night-eighties', extraKeys: {
-      'Cmd-Enter' => -> { run_code }
+    #@output = Editor.new :output, lineNumbers: false, mode: 'text', readOnly: true
+    @editor = Editor.new :editor, mode: 'ruby', tabMode: 'shift', theme: 'tomorrow-night-eighties', extraKeys: {
+      'Cmd-Enter' => -> { run_code },
+      'Ctrl-Enter' => -> { Negasonic::Time.stop }
     }
 
     @link = Element.find('#link_code')
     Element.find('#run_code').on(:click) { run_code }
     Element.find('#stop').on(:click) { Negasonic::Time.stop }
+
+    Document.on(:keydown) do
+    end
 
     hash = `decodeURIComponent(location.hash || location.search)`
 
@@ -90,7 +93,7 @@ class TryNegasonic
     start_negasonic
 
     @flush = []
-    @output.value = ''
+    #@output.value = ''
 
     set_link_code
 
@@ -130,7 +133,7 @@ class TryNegasonic
 
   def print_to_output(str)
     @flush << str
-    @output.value = @flush.join('')
+    #@output.value = @flush.join('')
   end
 end
 
