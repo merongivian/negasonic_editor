@@ -1,22 +1,22 @@
 GIT
   remote: https://www.github.com/merongivian/negasonic
-  revision: 88f8c0950ca8f82d003059692b694fbff99d030e
+  revision: aaff6db4ae51f81647a377553cb5d15d82d827e9
   specs:
     negasonic (0.1.0)
       tone.rb
 
 GIT
   remote: https://www.github.com/merongivian/tone.rb
-  revision: ad0ce35a1ca6615a59b4fe3bd07254283c95dd22
+  revision: 700ca5a3060e6385854c14c0796ac5def3c3051d
   specs:
     tone.rb (0.1.0)
       opal (>= 0.10.2)
 
 GIT
   remote: https://www.github.com/opal/opal-jquery
-  revision: f47a9b42da366cea270f743b05acf529f3077d35
+  revision: 6249dfaf406ecd7199079b4f4d9dc67cfdf4d602
   specs:
-    opal-jquery (0.4.2)
+    opal-jquery (0.4.3)
       opal (>= 0.10.0, < 0.12.0)
 
 GEM
@@ -26,7 +26,7 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     hike (1.2.3)
-    opal (0.10.5)
+    opal (0.10.6)
       hike (~> 1.2)
       sourcemap (~> 0.1.0)
       sprockets (~> 3.1)
@@ -39,7 +39,7 @@ GEM
     rake (12.3.1)
     roda (2.29.0)
       rack
-    roda-opal_assets (0.3.1)
+    roda-opal_assets (0.3.3)
       opal (~> 0.7, < 0.11.0)
       rack (~> 1.0)
       roda

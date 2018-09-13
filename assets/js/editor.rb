@@ -78,11 +78,11 @@ class TryNegasonic
       %x{
         StartAudioContext(Tone.context).then(function(){
           Tone.Master.volume.value = -20;
-          #{Tone::Transport.start}
+          #{Tone::Transport.start('+0.1')}
         })
       }
 
-      Negasonic::Time.set_next_cycle_number_acummulator
+      Negasonic::Time.set_cycle_number_acummulator
     end
   end
 
@@ -103,10 +103,10 @@ class TryNegasonic
       code = Opal.compile(@editor.value, :source_map_enabled => false)
       eval_code code
 
-      Negasonic::Time.schedule_next_cycle do
-        Negasonic.default_instrument.dispose_stored_cycles
-        Negasonic.default_instrument.start_current_cycles
+      Negasonic.default_instrument.stored_cycles.each(&:dispose)
+      Negasonic.default_instrument.cycles.each(&:start)
 
+      Negasonic::Time.schedule_next_cycle do
         Negasonic::Instrument.all_not_used.each(&:kill_current_cycles)
       end
 
