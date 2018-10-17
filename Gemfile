@@ -13,3 +13,4 @@ gem 'opal-sprockets'
 gem 'opal-jquery', git: github.('opal/opal-jquery')
 gem 'tone.rb', git: github.('merongivian/tone.rb')
 gem 'negasonic', git: github.('merongivian/negasonic')
+gem 'keen'

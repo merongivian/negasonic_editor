@@ -22,10 +22,16 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     concurrent-ruby (1.0.5)
     erubis (2.7.0)
     execjs (2.7.0)
     hike (1.2.3)
+    keen (1.1.1)
+      addressable (~> 2.5)
+      multi_json (~> 1.12)
+    multi_json (1.13.1)
     opal (0.10.6)
       hike (~> 1.2)
       sourcemap (~> 0.1.0)
@@ -35,6 +41,7 @@ GEM
       opal (~> 0.10.4)
       sprockets (~> 3.1)
       tilt (>= 1.4)
+    public_suffix (3.0.3)
     rack (1.6.10)
     rake (12.3.1)
     roda (2.29.0)
@@ -58,6 +65,7 @@ PLATFORMS
 
 DEPENDENCIES
   erubis (~> 2.7)
+  keen
   negasonic!
   opal (~> 0.10.5)
   opal-jquery!
