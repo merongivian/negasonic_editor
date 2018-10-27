@@ -1,6 +1,7 @@
 require 'opal'
 require 'roda'
 require 'roda/opal_assets'
+require 'keen'
 
 class NegasonicEditor < Roda
   plugin :render
@@ -14,6 +15,7 @@ class NegasonicEditor < Roda
     assets.route r
 
     r.root do
+      Keen.publish(:editor, {})
       view('editor')
     end
   end
