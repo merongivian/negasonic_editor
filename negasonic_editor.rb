@@ -15,7 +15,19 @@ class NegasonicEditor < Roda
     assets.route r
 
     r.root do
-      Keen.publish(:editor, {})
+      Keen.publish(
+        :editor,
+        ip_address: request.ip,
+        keen: {
+                addons: [
+                  {
+                    name: 'keen:ip_to_geo',
+                    input: { ip: 'ip_address' },
+                    output: 'ip_geo_info'
+                  }
+                ]
+              }
+      )
       view('editor')
     end
   end
